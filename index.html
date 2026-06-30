@@ -11574,23 +11574,23 @@ function renderMisPlantillas() {
             // Clean single-line layout: # | Tipo | Anterior | Reps | KG | ✓
             var prevDisp = prevP ? (prevP.reps + '×' + prevP.peso + 'kg') : '—';
             return (
-              '<div style="display:flex;align-items:center;gap:6px;padding:10px 12px;border-bottom:1px solid var(--border);">' +
+              '<div style="display:flex;align-items:center;gap:8px;padding:10px 10px;border-bottom:1px solid var(--border);flex-wrap:nowrap;">' +
                 // Serie number
                 '<div class="serie-num" style="flex-shrink:0;">' + (sIdx+1) + '</div>' +
                 // Tipo pill
                 '<button onclick="cycleSetTypePlan(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ')" style="flex-shrink:0;font-size:9px;font-weight:700;padding:3px 7px;border-radius:6px;background:' + tc[0] + ';color:' + tc[1] + ';border:none;cursor:pointer;font-family:inherit;white-space:nowrap;">' + (tipoLabels2[tipoS]||'Normal') + '</button>' +
                 // Previous
-                '<div style="flex-shrink:0;font-size:10px;color:var(--text-hint);font-weight:600;min-width:52px;">' + prevDisp + '</div>' +
+                '<div style="flex-shrink:0;font-size:10px;color:var(--text-hint);font-weight:600;width:42px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + prevDisp + '</div>' +
                 // Reps input
-                '<div class="serie-peso-wrap' + (repsHechas ? ' serie-completada' : '') + '" style="flex:1;min-width:0;">' +
+                '<div class="serie-peso-wrap' + (repsHechas ? ' serie-completada' : '') + '" style="flex-shrink:0;min-width:50px;">' +
                   '<input class="serie-peso" type="number" inputmode="numeric" placeholder="0" value="' + (s.repsReales||'') + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'repsReales\',this.value);actualizarRIR(\'' + rirId + '\',this.value,\'' + (e.reps||'') + '\');calcRecPeso(\'' + recId + '\',' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',this.value,null,\'' + (e.reps||'') + '\',\'' + (datos.nivel||'intermedio') + '\')" onfocus="this.select()">' +
                   '<span class="serie-peso-unit" style="font-size:9px;">rep</span>' +
                 '</div>' +
                 (isBWplan
-                  ? '<div class="serie-peso-wrap" style="flex:1;min-width:0;"><input class="serie-peso" type="number" inputmode="numeric" placeholder="—" value="' + (s.rpe||'') + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'rpe\',this.value)" onfocus="this.select()" style="width:36px;"><span class="serie-peso-unit" style="font-size:9px;">RPE</span></div>'
-                  : '<div class="serie-peso-wrap" style="flex:1;min-width:0;"><input class="serie-peso" type="number" inputmode="decimal" placeholder="0" value="' + (s.peso||'') + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'peso\',this.value);showRM(this,' + repsNum + ',\'rm_mp_' + plan.id + '_' + d + '_' + eIdx + '_' + sIdx + '\');calcRecPeso(\'' + recId + '\',' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',null,this.value,\'' + (e.reps||'') + '\',\'' + (datos.nivel||'intermedio') + '\')" onfocus="this.select()"><span class="serie-peso-unit">kg</span></div>') +
+                  ? '<div class="serie-peso-wrap" style="flex-shrink:0;min-width:50px;"><input class="serie-peso" type="number" inputmode="numeric" placeholder="—" value="' + (s.rpe||'') + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'rpe\',this.value)" onfocus="this.select()" style="width:24px;min-width:24px;"><span class="serie-peso-unit" style="font-size:9px;">RPE</span></div>'
+                  : '<div class="serie-peso-wrap" style="flex-shrink:0;min-width:54px;"><input class="serie-peso" type="number" inputmode="decimal" placeholder="0" value="' + (s.peso||'') + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'peso\',this.value);showRM(this,' + repsNum + ',\'rm_mp_' + plan.id + '_' + d + '_' + eIdx + '_' + sIdx + '\');calcRecPeso(\'' + recId + '\',' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',null,this.value,\'' + (e.reps||'') + '\',\'' + (datos.nivel||'intermedio') + '\')" onfocus="this.select()"><span class="serie-peso-unit">kg</span></div>') +
                 // Complete button
-                '<button onclick="completarSeriePlan(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ')" style="flex-shrink:0;width:32px;height:32px;border-radius:9px;border:1.5px solid ' + (isDone?'var(--green)':'var(--border)') + ';background:' + (isDone?'var(--green)':'transparent') + ';color:' + (isDone?'white':'var(--text-hint)') + ';font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✓</button>' +
+                '<button onclick="completarSeriePlan(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ')" style="flex-shrink:0;width:30px;height:30px;border-radius:9px;border:1.5px solid ' + (isDone?'var(--green)':'var(--border)') + ';background:' + (isDone?'var(--green)':'transparent') + ';color:' + (isDone?'white':'var(--text-hint)') + ';font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✓</button>' +
               '</div>' +
               // RIR + 1RM + PR row
               '<div style="display:flex;align-items:center;justify-content:space-between;padding:2px 12px 4px;">' +
@@ -19148,12 +19148,54 @@ function buscarProductoOFF(codigo) {
       html += '<select id="comidaOFF" style="width:100%;padding:10px;border:1.5px solid var(--border);border-radius:10px;font-size:13px;font-family:inherit;background:var(--bg);color:var(--text);box-sizing:border-box;">';
       html += '<option value="desayuno">🌅 Desayuno</option><option value="almuerzo" selected>☀️ Almuerzo</option><option value="merienda">🍎 Merienda</option><option value="cena">🌙 Cena</option>';
       html += '</select></div></div>';
+
+      // ── ¿Encaja en tu día? — comparar contra macros objetivo y lo ya consumido hoy ──
+      html += '<div id="encajeOFFCheck" style="margin-bottom:10px;"></div>';
+
       // Store product data globally for the add button
       window._offProducto = { nombre: nombre, kcal: kcal, prot: prot, carb: carb, gras: gras };
       html += '<button onclick="annadirProductoOFF()" style="width:100%;padding:13px;background:var(--green);color:white;border:none;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;">✅ Añadir al diario</button>';
       html += '</div></div>';
 
       res.innerHTML = html;
+
+      // Calcular y mostrar el encaje inicial (100g por defecto), y recalcular al cambiar gramos
+      (function(){
+        function actualizarEncajeOFF() {
+          var gramosNow = parseInt((document.getElementById('gramosOFF')||{}).value) || 100;
+          var f = gramosNow / 100;
+          var addKcal = kcal * f;
+          var fechaHoy = new Date().toISOString().split('T')[0];
+          var diaActual = _diarioComidas[fechaHoy] || { desayuno:[], almuerzo:[], merienda:[], cena:[] };
+          var totalesHoy = (typeof calcTotalesDia === 'function') ? calcTotalesDia(diaActual) : {kcal:0};
+          var objetivo = (typeof getMacrosObjetivoDia === 'function') ? getMacrosObjetivoDia() : null;
+          var box = document.getElementById('encajeOFFCheck');
+          if (!box) return;
+          if (!objetivo || !objetivo.kcal) {
+            box.innerHTML = '<div style="background:var(--bg);border-radius:10px;padding:8px 10px;font-size:11px;color:var(--text-muted);">ℹ️ Define tus objetivos de macros en la pestaña "Macros" para ver si este alimento encaja en tu día.</div>';
+            return;
+          }
+          var kcalRestante = objetivo.kcal - (totalesHoy.kcal || 0);
+          var sePasaKcal = addKcal > kcalRestante;
+          var kcalDespues = (totalesHoy.kcal || 0) + addKcal;
+          var pct = objetivo.kcal > 0 ? Math.round((kcalDespues / objetivo.kcal) * 100) : 0;
+          var color = sePasaKcal ? '#EF4444' : (pct > 90 ? '#F59E0B' : '#00C896');
+          var icono = sePasaKcal ? '⚠️' : '✅';
+          var msg = sePasaKcal
+            ? 'Te pasarías ' + Math.round(addKcal - kcalRestante) + ' kcal de tu objetivo diario si lo añades.'
+            : 'Encaja en tu día — te quedarían ' + Math.round(kcalRestante - addKcal) + ' kcal disponibles.';
+          box.innerHTML =
+            '<div style="background:' + color + '12;border:1.5px solid ' + color + '40;border-radius:10px;padding:10px 12px;">' +
+            '<div style="font-size:12px;font-weight:700;color:' + color + ';margin-bottom:4px;">' + icono + ' ' + msg + '</div>' +
+            '<div style="height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:6px;">' +
+            '<div style="height:100%;width:' + Math.min(pct,100) + '%;background:' + color + ';"></div></div>' +
+            '<div style="font-size:10px;color:var(--text-muted);margin-top:4px;">' + kcalDespues.toFixed(0) + ' / ' + objetivo.kcal + ' kcal del día (' + pct + '%)</div>' +
+            '</div>';
+        }
+        actualizarEncajeOFF();
+        var gramosOFFEl = document.getElementById('gramosOFF');
+        if (gramosOFFEl) gramosOFFEl.addEventListener('input', actualizarEncajeOFF);
+      })();
     })
     .catch(function(e) {
       if (res) res.innerHTML =
